@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Todos.Infastructure.Context;
+using Todos.Infastructure.Repositories;
+using Todos.Infastructure.Repositories.Interfaces;
 
 namespace Todos.Infastructure.DI
 {
@@ -15,6 +17,8 @@ namespace Todos.Infastructure.DI
             });
 
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
 
             return services;
         }
