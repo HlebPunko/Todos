@@ -45,7 +45,8 @@ namespace Todos.Infastructure.Migrations
 
                     b.Property<DateTimeOffset>("WhenAdded")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
 
                     b.HasKey("Id");
 

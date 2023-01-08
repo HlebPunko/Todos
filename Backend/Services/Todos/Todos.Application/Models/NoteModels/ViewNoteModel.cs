@@ -2,5 +2,6 @@
 {
     public class ViewNoteModel : BaseNoteModel
     {
+        public DateTimeOffset WhenAdded { get; set; }
     }
 }

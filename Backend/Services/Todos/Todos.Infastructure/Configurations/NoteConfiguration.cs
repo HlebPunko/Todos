@@ -15,7 +15,7 @@ namespace Todos.Infastructure.Configurations
 
             builder.Property(x => x.NoteBody).IsRequired().HasMaxLength(500);
 
-            builder.Property(x => x.WhenAdded).IsRequired().ValueGeneratedOnAdd();
+            builder.Property(x => x.WhenAdded).IsRequired().HasDefaultValueSql("now()");
         }
     }
 }

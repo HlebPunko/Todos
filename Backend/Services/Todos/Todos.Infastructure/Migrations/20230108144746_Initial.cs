@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Todos.Infastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,7 +33,7 @@ namespace Todos.Infastructure.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     NoteTitle = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     NoteBody = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
-                    WhenAdded = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    WhenAdded = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
                     NoteBookId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>

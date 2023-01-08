@@ -12,8 +12,8 @@ using Todos.Infastructure.Context;
 namespace Todos.Infastructure.Migrations
 {
     [DbContext(typeof(TodosDbContext))]
-    [Migration("20230107115323_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230108144746_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,7 +48,8 @@ namespace Todos.Infastructure.Migrations
 
                     b.Property<DateTimeOffset>("WhenAdded")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
 
                     b.HasKey("Id");
 
