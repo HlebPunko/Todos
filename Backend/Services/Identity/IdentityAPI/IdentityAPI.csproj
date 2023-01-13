@@ -23,7 +23,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="IdentityServer\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Identity.Application\Identity.Application.csproj" />
   </ItemGroup>
 
 </Project>
