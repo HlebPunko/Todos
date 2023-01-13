@@ -67,7 +67,6 @@ namespace IdentityAPI.IdentityServer
         public static IEnumerable<ApiResource> GetApiResources() => new List<ApiResource>()
         {
             new ApiResource("TodosAPI") { Scopes = { "TodosAPI" } },
-            new ApiResource("TodosAPI")
         };
 
         public static IEnumerable<ApiScope> GetApiScopes() => new List<ApiScope>()
