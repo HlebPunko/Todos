@@ -13,7 +13,11 @@
           "Host": "localhost",
           "Port": 5017
         }
-      ]
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityKey",
+        "AllowedScopes": [ "TodosAPI" ]
+      }
     },
     {
       "UpstreamPathTemplate": "/gateaway/notes/{id}",
@@ -25,7 +29,11 @@
           "Host": "localhost",
           "Port": 5017
         }
-      ]
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityKey",
+        "AllowedScopes": [ "TodosAPI" ]
+      }
     },
     {
       "UpstreamPathTemplate": "/gateaway/notebooks",
@@ -37,7 +45,11 @@
           "Host": "localhost",
           "Port": 5017
         }
-      ]
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityKey",
+        "AllowedScopes": [ "TodosAPI" ]
+      }
     },
     {
       "UpstreamPathTemplate": "/gateaway/notebooks/{id}",
@@ -49,7 +61,11 @@
           "Host": "localhost",
           "Port": 5017
         }
-      ]
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityKey",
+        "AllowedScopes": [ "TodosAPI" ]
+      }
     }
   ]
 }

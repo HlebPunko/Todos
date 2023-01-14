@@ -1,3 +1,4 @@
+using APIGateway.Extensions;
 using Microsoft.Extensions.Configuration;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
@@ -11,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddOcelot(builder.Configuration);
+builder.Services.AddCustomAuthentication(builder.Configuration);
 
 var app = builder.Build();
 
@@ -19,7 +21,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 
 app.UseAuthentication();
 
