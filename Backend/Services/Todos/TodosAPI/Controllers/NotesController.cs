@@ -1,23 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using Todos.Application.Models.NoteBookModels;
+using Todos.Application.Models.NoteModels;
 using Todos.Application.Services.Interfaces;
 
 namespace TodosAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class NoteBookController : ControllerBase
+    public class NotesController : ControllerBase
     {
-        private readonly INoteBookService _service;
+        private readonly INoteService _service;
 
-        public NoteBookController(INoteBookService service)
+        public NotesController(INoteService service)
         {
             _service = service;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetNoteBooks(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetNotes(CancellationToken cancellationToken)
         {
             var res = await _service.GetAllAsync(cancellationToken);
 
@@ -25,7 +25,7 @@ namespace TodosAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetNoteBook([FromRoute] int id, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetNote([FromRoute] int id, CancellationToken cancellationToken)
         {
             var res = await _service.GetAsync(id, cancellationToken);
 
@@ -34,16 +34,16 @@ namespace TodosAPI.Controllers
 
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.Created)]
-        public async Task<IActionResult> CreateNoteBook([FromBody] CreateNoteBookModel noteBook, CancellationToken cancellationToken)
+        public async Task<IActionResult> CreateNote([FromBody] CreateNoteModel note, CancellationToken cancellationToken)
         {
-            var res = await _service.CreateAsync(noteBook, cancellationToken);
+            var res = await _service.CreateAsync(note, cancellationToken);
 
             return Ok(res);
         }
 
         [HttpDelete("{id}")]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
-        public async Task<IActionResult> DeleteNoteBook([FromRoute] int id, CancellationToken cancellationToken)
+        public async Task<IActionResult> DeleteNote([FromRoute] int id, CancellationToken cancellationToken)
         {
             await _service.DeleteAsync(id, cancellationToken);
 
@@ -51,15 +51,15 @@ namespace TodosAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateNoteBook([FromRoute] int id, [FromBody] UpdateNoteBookModel noteBook,
+        public async Task<IActionResult> UpdateNote([FromRoute] int id, [FromBody] UpdateNoteModel note,
             CancellationToken cancellationToken)
         {
-            if (id != noteBook.Id)
+            if (id != note.Id)
             {
                 return BadRequest("Different Id entered!");
             }
 
-            var res = await _service.UpdateAsync(noteBook, cancellationToken);
+            var res = await _service.UpdateAsync(note, cancellationToken);
 
             return Ok(res);
         }
