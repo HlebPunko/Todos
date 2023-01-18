@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
+import './Auth.css';
 
 function Auth(props) {
     let [authMode, setAuthMode] = useState("signin")
