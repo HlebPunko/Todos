@@ -4,25 +4,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Main(){
     return (
-      <div className="container">
+      <div className="container-fluid">
           <div className="row">
-              <div className="col-sm">
-                  <div className={"Elements-after-welcome-container"}>
-                      <p className="Welcome-string">Welcome!</p>
-                      <p className="Sentences-after-welcome">
+              <div className="Custom-col col-12 col-lg-6 ">
+                      <div className="Welcome-string">Welcome!</div>
+                      <div className="Sentences-after-welcome">
                           This web-application give you possibility to save your life`s tasks
-                      </p>
+                      </div>
                       <div className="Vertical-line"/>
-                      <p className="Sentences-after-welcome">
+                      <div className="Sentences-after-welcome">
                           Even if you often forget something, you can save everything here and just see what you need to do!
-                      </p>
-                  </div>
+                      </div>
               </div>
-              <div className="col-sm">
-                  <img src={require('../Images/logo.png')} className='Logo-image'/>
+              <div className="Custom-col col-12 col-lg-6">
+                  <div className='Welcome-string'>Todos</div>
+                  <img src={require('../Images/logo.svg').default} className='Logo-image'/>
+                  <div className='Sentences-after-welcome'>Now you will remember everything</div>
               </div>
           </div>
-          <div className='row Container-for-button'>
+          <div className='Container-for-button'>
               <button className="Button-for-login">Start an work with this application!</button>
           </div>
       </div>

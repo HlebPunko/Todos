@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Auth from "./Auth/Auth";
 import Main from "./Main/Main"
+import Todos from "./Todos/Todos";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Main />}></Route>
             <Route path="/auth" element={<Auth />} />
+            <Route path="/todos" element={<Todos />}/>
         </Routes>
       </BrowserRouter>
   );
