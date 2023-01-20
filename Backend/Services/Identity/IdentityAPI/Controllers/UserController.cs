@@ -9,9 +9,6 @@ namespace IdentityAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private static readonly string SecretKey = "db3OIsj+BXE9NZDy0t8W3TcNekrF+2d/1sFnWG4HnV8TZY30iTOdtVWJOMZ4zY";//TODO delete it!
-        private static readonly string Issuer = "http://localhost:5103";
-        private static readonly string Audience = "http://localhost:5103";
         private readonly IAuthService _service;
 
         public UserController(IAuthService service)
