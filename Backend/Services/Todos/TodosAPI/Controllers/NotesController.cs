@@ -32,6 +32,14 @@ namespace TodosAPI.Controllers
             return Ok(res);
         }
 
+        [HttpGet($"{nameof(GetNotesByNoteBookId)}")]
+        public async Task<IActionResult> GetNotesByNoteBookId( int noteBookId, CancellationToken cancellationToken)
+        {
+            var res = await _service.GetNotesByNoteBookIdAsync(noteBookId, cancellationToken);
+
+            return Ok(res);
+        }
+
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.Created)]
         public async Task<IActionResult> CreateNote([FromBody] CreateNoteModel note, CancellationToken cancellationToken)

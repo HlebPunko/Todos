@@ -19,9 +19,9 @@ namespace Todos.Application.Services
 
         public async Task<List<ViewNoteModel>> GetAllAsync(CancellationToken cancellationToken)
         {
-            var orders = await _manager.NoteRepository.GetAllAsync(cancellationToken);
+            var notes = await _manager.NoteRepository.GetAllAsync(cancellationToken);
 
-            return _mapper.Map<List<ViewNoteModel>>(orders);
+            return _mapper.Map<List<ViewNoteModel>>(notes);
         }
 
         public async Task<ViewNoteModel> GetAsync(int id, CancellationToken cancellationToken)
@@ -31,30 +31,49 @@ namespace Todos.Application.Services
                 throw new ArgumentException("Id have default value!");
             }
 
-            var order = await _manager.NoteRepository.GetAsync(id, cancellationToken);
+            var note = await _manager.NoteRepository.GetAsync(id, cancellationToken);
 
-            if (order is null)
+            if (note is null)
             {
-                throw new ArgumentNullException(nameof(order));
+                throw new ArgumentNullException(nameof(note));
             }
 
-            return _mapper.Map<ViewNoteModel>(order);
+            return _mapper.Map<ViewNoteModel>(note);
+        }
+
+        public async Task<List<ViewNoteModel>> GetNotesByNoteBookIdAsync(int noteBookId, CancellationToken cancellationToken)
+        {
+            if(noteBookId is default(int))
+            {
+                throw new ArgumentException("Notebook id have default value!");
+            }
+
+            var allNotes = await _manager.NoteRepository.GetAllAsync(cancellationToken);
+
+            var result = allNotes.Where(x => x.NoteBookId == noteBookId).ToList();
+
+            if(result is null)
+            {
+                throw new ArgumentNullException("This Notebook don`t have any notes!");
+            }
+
+            return _mapper.Map<List<ViewNoteModel>>(result); 
         }
 
         public async Task<ViewNoteModel> CreateAsync(CreateNoteModel model, CancellationToken cancellationToken)
         {
             var map = _mapper.Map<Note>(model);
 
-            var createdOrder = await _manager.NoteRepository.CreateAsync(map, cancellationToken);
+            var createdNote = await _manager.NoteRepository.CreateAsync(map, cancellationToken);
 
-            if (createdOrder is null)
+            if (createdNote is null)
             {
-                throw new ArgumentNullException(nameof(createdOrder));
+                throw new ArgumentNullException(nameof(createdNote));
             }
 
             await _manager.SaveAsync(cancellationToken);
 
-            return _mapper.Map<ViewNoteModel>(createdOrder);
+            return _mapper.Map<ViewNoteModel>(createdNote);
         }
 
         public async Task DeleteAsync(int id, CancellationToken cancellationToken)
@@ -64,14 +83,14 @@ namespace Todos.Application.Services
                 throw new ArgumentException("Id have default value!");
             }
 
-            var order = await _manager.NoteRepository.GetAsync(id, cancellationToken);
+            var note = await _manager.NoteRepository.GetAsync(id, cancellationToken);
 
-            if (order is null)
+            if (note is null)
             {
-                throw new ArgumentNullException(nameof(order));
+                throw new ArgumentNullException(nameof(note));
             }
 
-            await _manager.NoteRepository.DeleteAsync(order, cancellationToken);
+            await _manager.NoteRepository.DeleteAsync(note, cancellationToken);
 
             await _manager.SaveAsync(cancellationToken);
         }
@@ -85,16 +104,16 @@ namespace Todos.Application.Services
 
             var map = _mapper.Map<Note>(model);
 
-            var updatedOrder = await _manager.NoteRepository.UpdateAsync(map, cancellationToken);
+            var updatedNote = await _manager.NoteRepository.UpdateAsync(map, cancellationToken);
 
-            if (updatedOrder is null)
+            if (updatedNote is null)
             {
-                throw new ArgumentNullException(nameof(updatedOrder));
+                throw new ArgumentNullException(nameof(updatedNote));
             }
 
             await _manager.SaveAsync(cancellationToken);
 
-            return _mapper.Map<ViewNoteModel>(updatedOrder);
+            return _mapper.Map<ViewNoteModel>(updatedNote);
         }
     }
 }
